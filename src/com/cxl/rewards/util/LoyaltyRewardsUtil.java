@@ -1,7 +1,6 @@
 package com.cxl.rewards.util;
 
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import java.text.MessageFormat;
 
 /**
  * 
@@ -10,10 +9,19 @@ import org.apache.http.impl.client.HttpClients;
  */
 public class LoyaltyRewardsUtil 
 {
+	//
+	private LoyaltyRewardsUtil() {}
 	
-	public void getRequest() 
+	/**
+	 * Build out the return String.
+	 * @param msg
+	 * @param values
+	 * @return String
+	 */
+	public static String buildMessage(String msg, String[] values)
 	{
-		CloseableHttpClient httpclient = HttpClients.createDefault();
+		String newMessage = MessageFormat.format(msg, values);	
+		return newMessage;
 	}
 
 }
