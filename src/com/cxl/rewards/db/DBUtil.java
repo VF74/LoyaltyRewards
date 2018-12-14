@@ -64,7 +64,7 @@ public class DBUtil {
 		System.out.println("AccountPIN:" + accountInfo.getAccountPIN());
 		System.out.println("AccountBalance:" + accountInfo.getAccountBalance());
 		
-		System.out.println("Redemption Historys Count:" + redemptionItems.size());
+		System.out.println("Redemption History Count:" + redemptionItems.size());
 		
 		System.out.println("Featured Items Count:" + featuredItems.size());
 		
@@ -120,7 +120,7 @@ public class DBUtil {
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(GET_ACCT_REDEMPTIONS);
 
-				if (rs.next()) {
+				while (rs.next()) {
 					
 					RedemptionItem item= new RedemptionItem();
 					
@@ -156,7 +156,7 @@ public class DBUtil {
 						stmt = conn.createStatement();
 						rs = stmt.executeQuery(GET_FEAUTRED_ITEMS);
 
-						if (rs.next()) {
+						while (rs.next()) {
 							
 							FeaturedItem item= new FeaturedItem();
 							
