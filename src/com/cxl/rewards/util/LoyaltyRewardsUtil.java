@@ -1,6 +1,8 @@
 package com.cxl.rewards.util;
 
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 
@@ -22,6 +24,14 @@ public class LoyaltyRewardsUtil
 	{
 		String newMessage = MessageFormat.format(msg, values);	
 		return newMessage;
+	}
+	
+	public static String getTodaysDate() 
+	{
+	       SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	   	   Date date = new Date();
+	   	   String currentDate = dateFormat.format(date);
+	   	   return currentDate;
 	}
 
 }
