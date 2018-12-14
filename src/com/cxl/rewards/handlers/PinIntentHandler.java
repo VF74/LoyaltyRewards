@@ -28,6 +28,7 @@ public class PinIntentHandler implements RequestHandler {
        		+ "say end to quit";
        
            
+             
        /*StringBuilder sb = new StringBuilder();
        Map attributes = input.getAttributesManager().getRequestAttributes();
        Set keys = attributes.entrySet();
