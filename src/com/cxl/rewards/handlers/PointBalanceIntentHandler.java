@@ -33,9 +33,8 @@ public class PointBalanceIntentHandler implements RequestHandler
        String speechText = "Your current point balance is {0} points as of {1}, you have {2} points expiring by {3}..." 
                            + SpeechConstants.LASTEST_REDEMPTIONS;
        
-       SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-   	   Date date = new Date();
-   	   String currentDate = dateFormat.format(date); //2013/10/15 16:16:39
+
+   	   String currentDate = LoyaltyRewardsUtil.getTodaysDate(); 
        
        try {
     	   AccountInfo acctInfo = DBUtil.getAccountInfo("");

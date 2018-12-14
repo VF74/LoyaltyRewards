@@ -7,7 +7,6 @@ import java.util.Optional;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
-import com.cxl.rewards.util.SpeechConstants;
 
 /**
  * 
@@ -28,8 +27,15 @@ public class PinIntentHandler implements RequestHandler {
        		+ "please tell Alexa what you would like to do next... you can say things like what is my point balance or list my redemptions..."
        		+ "say end to quit";
        
-       //ResponseBuilder rb = input.getResponseBuilder();
-       //rb.withReprompt(text)
+           
+       /*StringBuilder sb = new StringBuilder();
+       Map attributes = input.getAttributesManager().getRequestAttributes();
+       Set keys = attributes.entrySet();
+       for(Iterator i = keys.iterator(); i.hasNext();) {
+    	   String key = (String)i.next();
+    	   sb.append(attributes.get(key) + " ...");
+       }*/
+  
        
        return input.getResponseBuilder()
                 .withSpeech(speechText)
