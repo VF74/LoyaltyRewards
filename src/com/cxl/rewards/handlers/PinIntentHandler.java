@@ -8,6 +8,11 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
+/**
+ * 
+ * @author rmoon
+ *
+ */
 public class PinIntentHandler implements RequestHandler {
 
     @Override

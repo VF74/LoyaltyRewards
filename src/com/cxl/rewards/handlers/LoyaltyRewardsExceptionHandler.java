@@ -7,6 +7,11 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.exception.AskSdkException;
 import com.amazon.ask.model.Response;
 
+/**
+ * 
+ * @author rmoon
+ *
+ */
 public class LoyaltyRewardsExceptionHandler implements ExceptionHandler 
 {
 	    @Override

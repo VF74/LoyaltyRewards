@@ -9,7 +9,13 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
-public class SessionEndedRequestHandler implements RequestHandler {
+/**
+ * 
+ * @author rmoon
+ *
+ */
+public class SessionEndedRequestHandler implements RequestHandler 
+{
 
     @Override
     public boolean canHandle(HandlerInput input) {

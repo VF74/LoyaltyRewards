@@ -9,6 +9,14 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
+/**
+ * 2018 HackAThon 
+ * 
+ * AWS Lamdba function to support Loyalty Rewards Alexa skill
+ * 
+ * @author rmoon
+ *
+ */
 public class LaunchRequestHandler implements RequestHandler 
 {
 

@@ -6,6 +6,11 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.interceptor.ResponseInterceptor;
 import com.amazon.ask.model.Response;
 
+/**
+ * 
+ * @author rmoon
+ *
+ */
 public class PersistenceSavingResponseInterceptor implements ResponseInterceptor 
 {
 

@@ -8,7 +8,13 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class CancelandStopIntentHandler implements RequestHandler {
+/**
+ * 
+ * @author rmoon
+ *
+ */
+public class CancelandStopIntentHandler implements RequestHandler 
+{
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));

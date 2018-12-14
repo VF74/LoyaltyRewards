@@ -8,7 +8,13 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class HelpIntentHandler implements RequestHandler {
+/**
+ * 
+ * @author rmoon
+ *
+ */
+public class HelpIntentHandler implements RequestHandler 
+{
 
     @Override
     public boolean canHandle(HandlerInput input) {
