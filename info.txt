@@ -1,0 +1,16 @@
+
+
+
+com.cxl.rewards.LoyaltyRewardsStreamHandler::handleRequest
+
+mvn org.apache.maven.plugins:maven-assembly-plugin:2.6:assembly -DdescriptorId=jar-with-dependencies package
+
+Upload the jar with dependancies
+
+Defining a New Role for the Function
+The role specifies the AWS resources your function can access. To create a new role while configuring your function:
+
+For Role (under Lambda function handler and role), select Create new role from template(s).
+Enter the Role Name.
+From the Policy templates list, select Simple Microservice permissions.
+
