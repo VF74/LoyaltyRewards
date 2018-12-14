@@ -9,6 +9,7 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.cxl.rewards.db.DBUtil;
 import com.cxl.rewards.model.AccountInfo;
+import com.cxl.rewards.model.FeaturedItem;
 import com.cxl.rewards.util.LoyaltyRewardsUtil;
 
 /**
@@ -27,16 +28,16 @@ public class CartIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input) 
     {
-        String speechText = "thank your for your redemption... A confirmation email will be sent to you shortly... "
-           		+ "Your new point balance is {0} points";
+        String speechText = "thank you, Your redemption for {0} is complete... A confirmation email will be sent to you shortly... "
+           		+ "Your new point balance is {1} points";
         
     	try {
-			DBUtil.redeemItem("", "");
+			FeaturedItem item = DBUtil.redeemItem("", "");
 			
 	    	AccountInfo acctInfo = DBUtil.getAccountInfo("");
 	    	String currentPts = acctInfo.getAccountBalance();
 	        
-	    	String[] values = {currentPts};
+	    	String[] values = {item.getItemDescription(), currentPts};
 	        speechText = LoyaltyRewardsUtil.buildMessage(speechText, values);
 	           
 		} catch (Exception e) {
