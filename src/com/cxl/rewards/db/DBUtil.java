@@ -148,7 +148,7 @@ public class DBUtil {
 
 		
 		// Get Redemption History
-				public static void redeemItem(String accountNumber,String itemCode) throws Exception {
+				public static FeaturedItem redeemItem(String accountNumber,String itemCode) throws Exception {
 
 					FeaturedItem item= new FeaturedItem();
 					
@@ -206,6 +206,7 @@ public class DBUtil {
 						closeConnectionObjects(conn,stmt,rs);
 					}
 
+					return item;
 					
 				}
 
