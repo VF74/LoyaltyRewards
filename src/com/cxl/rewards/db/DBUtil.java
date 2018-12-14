@@ -2,6 +2,7 @@ package com.cxl.rewards.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class DBUtil {
 
 	// get targeted offer info in sequence order
 	public static final String GET_FEAUTRED_ITEMS = "select item_description, item_code, point_value from account_targeted_offers where account_number = 'abc1234' order by item_sequence";
+	
+	// get targeted offer info in sequence order
+	public static final String GET_FEAUTRED_ITEMS_BY_CODE = "select item_description, item_code, point_value from account_targeted_offers where account_number = 'abc1234' and item_code='AMAZONEC100'";
 
 	public static Connection getConnection() throws Exception {
 		//Every thing is harcoded for now
@@ -47,6 +51,8 @@ public class DBUtil {
 
 		try {
 
+			redeemItem("abc1234","AMAZONEC100");
+			
 			accountInfo = getAccountInfo("abc1234");
 			
 			redemptionItems=getRedemptionHistory("abc1234");
@@ -140,6 +146,71 @@ public class DBUtil {
 		}
 
 
+		
+		// Get Redemption History
+				public static void redeemItem(String accountNumber,String itemCode) throws Exception {
+
+					FeaturedItem item= new FeaturedItem();
+					
+					Connection conn = null;
+					PreparedStatement stmt = null;
+					ResultSet rs = null;
+
+					try {
+
+						conn = getConnection();
+						
+						stmt = conn.prepareCall(GET_FEAUTRED_ITEMS_BY_CODE);
+						
+						//stmt.setString(0, itemCode);
+							
+						rs=stmt.executeQuery();
+						
+						
+
+						if (rs.next()) {
+							
+						
+							
+							item.setItemDescription(rs.getString(1));
+							item.setItemCode(rs.getString(2));
+							item.setItemPointValue(rs.getString(3));
+						
+						
+						}
+						
+					//
+					String insertAccountRedemptions="INSERT INTO account_redemptions(account_number, redemption_date, item_description) VALUES ('abc1234', now(), ' $100 Amazon.com Gift Card' )";
+				
+					stmt = conn.prepareCall(insertAccountRedemptions);
+						
+					//stmt1.setString(1, item.getItemDescription());
+						
+					stmt.executeUpdate();
+					
+					
+					String updateAccount= "UPDATE accounts SET balance=balance-10000 WHERE account_number = 'abc1234'";
+						
+					
+					stmt = conn.prepareCall(updateAccount);
+						
+					//stmt.setString(0, item.getItemDescription());
+						
+					stmt.executeUpdate();
+					
+					
+
+					} catch (Exception e) {
+						throw e;
+					} finally {
+						closeConnectionObjects(conn,stmt,rs);
+					}
+
+					
+				}
+
+				
+				
 		// Get Featured Items
 				public static List<FeaturedItem> getFeaturedItems(String accountNumber) throws Exception {
 
@@ -161,7 +232,8 @@ public class DBUtil {
 							FeaturedItem item= new FeaturedItem();
 							
 							item.setItemDescription(rs.getString(1));
-							item.setItemPointValue(rs.getString(2));
+							item.setItemCode(rs.getString(2));
+							item.setItemPointValue(rs.getString(3));
 							featuredItems.add(item);
 						
 						}
