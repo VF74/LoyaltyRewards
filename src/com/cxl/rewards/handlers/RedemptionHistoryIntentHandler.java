@@ -10,6 +10,7 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.cxl.rewards.db.DBUtil;
 import com.cxl.rewards.model.RedemptionItem;
+import com.cxl.rewards.util.LoyaltyRewardsUtil;
 
 /**
  * 
@@ -28,14 +29,15 @@ public class RedemptionHistoryIntentHandler implements RequestHandler
     public Optional<Response> handle(HandlerInput input) 
     {
     	StringBuilder sb = new StringBuilder();
-    	String speechText = "Your redemption history as of December 17 2018 is...";
+    	String currentDate = LoyaltyRewardsUtil.getTodaysDate(); 
+    	String speechText = "Your redemption history as of " + currentDate + " is... ";
     	sb.append(speechText);
        
        try {
     	   List<RedemptionItem> redemptionList = DBUtil.getRedemptionHistory("");
     	   for(RedemptionItem item: redemptionList) {
     		   sb.append(item.getItemDescription() );
-    		   sb.append("...redeemed on "+item.getRedemptionDate() );
+    		   sb.append("...redeemed on "+item.getRedemptionDate() + "...");
     	   }
     	   sb.append("... would you like to hear the feature items next... just say list featured items");
 		} catch (Exception e) {
