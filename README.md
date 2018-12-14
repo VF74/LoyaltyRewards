@@ -1,8 +1,5 @@
-# Alexa Skills Kit SDK Sample - Hello World
-A simple [AWS Lambda](http://aws.amazon.com/lambda) function that demonstrates how to write a Hello World skill for the Amazon Echo using the Alexa SDK.
+# Alexa Loyalty Rewards skil
 
-## Concepts
-This simple sample has no external dependencies or session management, and shows the most basic example of how to create a Lambda function for handling Alexa Skill requests.
 
 ## Setup
 To run this example skill you need to do two things. The first is to deploy the example code in lambda, and the second is to configure the Alexa skill to use Lambda.
