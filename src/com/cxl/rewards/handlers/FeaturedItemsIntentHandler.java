@@ -9,7 +9,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.cxl.rewards.db.DBUtil;
-import com.cxl.rewards.model.RedemptionItem;
+import com.cxl.rewards.model.FeaturedItem;
 import com.cxl.rewards.util.LoyaltyRewardsUtil;
 
 /**
@@ -17,12 +17,12 @@ import com.cxl.rewards.util.LoyaltyRewardsUtil;
  * @author rmoon
  *
  */
-public class RedemptionHistoryIntentHandler implements RequestHandler 
+public class FeaturedItemsIntentHandler implements RequestHandler 
 {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("RedemptionHistoryIntentHandler"));
+        return input.matches(intentName("FeaturedItemsIntentHandler"));
     }
 
     @Override
@@ -30,14 +30,13 @@ public class RedemptionHistoryIntentHandler implements RequestHandler
     {
     	StringBuilder sb = new StringBuilder();
     	String currentDate = LoyaltyRewardsUtil.getTodaysDate(); 
-    	String speechText = "Your redemption history as of " + currentDate + " is... ";
+    	String speechText = "Your featured items as of " + currentDate + " are... ";
     	sb.append(speechText);
        
        try {
-    	   List<RedemptionItem> redemptionList = DBUtil.getRedemptionHistory("");
-    	   for(RedemptionItem item: redemptionList) {
-    		   sb.append(item.getItemDescription() );
-    		   sb.append("... redeemed on "+item.getRedemptionDate() + "... ");
+    	   List<FeaturedItem> featuredItem = DBUtil.getFeaturedItems("");
+    	   for(FeaturedItem item: featuredItem) {
+    		   sb.append(item.getItemDescription() + " ...");
     	   }
     	   sb.append("... would you like to hear the feature items next... just say list featured items");
 		} catch (Exception e) {
