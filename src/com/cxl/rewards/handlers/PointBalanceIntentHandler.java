@@ -2,6 +2,8 @@ package com.cxl.rewards.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -28,18 +30,22 @@ public class PointBalanceIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input) 
     {
-       String speechText = "Your current point balance is {0} points as of December 17 2018, you have {1} points expiring by {2}..." + SpeechConstants.NEXT;
+       String speechText = "Your current point balance is {0} points as of {1}, you have {2} points expiring by {3}..." 
+                           + SpeechConstants.LASTEST_REDEMPTIONS;
+       
+       SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+   	   Date date = new Date();
+   	   String currentDate = dateFormat.format(date); //2013/10/15 16:16:39
        
        try {
     	   AccountInfo acctInfo = DBUtil.getAccountInfo("");
     	   String currentPts = acctInfo.getAccountBalance();
     	   String ptsExpire = acctInfo.getPointsToExpire();
     	   String expireDate = acctInfo.getExpirationDate();
-           String[] values = {currentPts, ptsExpire, expireDate};
+           String[] values = {currentPts, currentDate, ptsExpire, expireDate};
            
            speechText = LoyaltyRewardsUtil.buildMessage(speechText, values);
        } catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
        }
        
