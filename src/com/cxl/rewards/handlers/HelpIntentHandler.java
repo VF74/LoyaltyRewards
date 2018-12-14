@@ -22,8 +22,14 @@ public class HelpIntentHandler implements RequestHandler
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput input) {
-        String speechText = "You can say hello to me!";
+    public Optional<Response> handle(HandlerInput input) 
+    {
+        String speechText = "The following commands are available in the latest version of this skill...you can say things like, "
+        		+ "what is my point balance... or just simply balance.... you can ask alexa to get the status of your latest "
+        		+ "redemption by saying redemption status..."
+        		+ "you can also redeem for a gift card by saying redeem...when you are finished just say end to exit. "
+        		+ "Thank you for using this latest additions to the connetions loyalty product lineup";
+        
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("LoyaltyRewards", speechText)

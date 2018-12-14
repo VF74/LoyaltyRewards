@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import com.cxl.rewards.util.SpeechConstants;
 
 /**
  * 
@@ -23,7 +24,8 @@ public class PinIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) 
     {
-       String speechText = "Thank your Rob Moon,  please tell Alexa what you would like to do next";
+       String speechText = "Thank your Rob Moon...your now ready to use the new and fantastic loyalty rewards Alexa skill by connections..."
+       		+ "please tell Alexa what you would like to do next... you can say things like what is my point balance or list my redemptions...say end to quite";
        
        //ResponseBuilder rb = input.getResponseBuilder();
        //rb.withReprompt(text)
@@ -31,7 +33,7 @@ public class PinIntentHandler implements RequestHandler {
        return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("LoyaltyRewards", speechText)
-                .withReprompt("What can I help you with next")
+                .withReprompt(speechText)
                 .build();
     }
 

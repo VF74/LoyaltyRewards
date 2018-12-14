@@ -8,6 +8,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.cxl.rewards.util.LoyaltyRewardsUtil;
+import com.cxl.rewards.util.SpeechConstants;
 
 /**
  * 
@@ -25,18 +26,16 @@ public class PointBalanceIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input) 
     {
-       String speechText = "Your current point balance is {0} points as of December 17 2018, you have {1} expiring by January 1, 2019";
+       String speechText = "Your current point balance is {0} points as of December 17 2018, you have {1} points expiring by January 1, 2019..." + SpeechConstants.NEXT;
        
-       String[] values = {
-    		   "John Doe", "invoice #123", "2009-06-30"
-    		 };
+       String[] values = {"100", "25" };
        
-       LoyaltyRewardsUtil.buildMessage(speechText, values);
+       speechText = LoyaltyRewardsUtil.buildMessage(speechText, values);
        
        return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("LoyaltyRewards Point Balance", speechText)
-                .withReprompt("...What can I help you with next")
+                .withReprompt(speechText)
                 .build();
     }
 

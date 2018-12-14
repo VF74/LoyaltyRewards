@@ -29,7 +29,7 @@ public class RedemptionHistoryIntentHandler implements RequestHandler
        return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("LoyaltyRewards Redeption History", speechText)
-                .withReprompt("What can I help you with next")
+                .withReprompt(speechText)
                 .build();
     }
 

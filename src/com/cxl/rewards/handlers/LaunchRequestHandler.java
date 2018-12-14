@@ -27,7 +27,7 @@ public class LaunchRequestHandler implements RequestHandler
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Welcome to My Company Rewards... please say your four digit pin you used to register your account";
+        String speechText = "Welcome to My Company Rewards... to get started, please say your four digit pin you used to register your account";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Hello", speechText)
