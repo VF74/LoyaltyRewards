@@ -4,20 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.cxl.rewards.model.AccountInfo;
+import com.cxl.rewards.model.FeaturedItem;
+import com.cxl.rewards.model.RedemptionItem;
 
 public class DBUtil {
 
 	// get pin and expiration info
-	public static final String GET_ACCT = "select balance, pin, next_points_to_expire, next_points_expiration_date from accounts where account_number = 'abc1234'";
+	public static final String GET_ACCT_INFO = "select balance, pin, next_points_to_expire, next_points_expiration_date from accounts where account_number = 'abc1234'";
 
 	// get redemption history, most recent items first
-	public static final String GET_ACCT_REDEMPTION = "select redemption_date, item_description from account_redemptions where account_number = 'abc1234' order by redemption_date desc";
+	public static final String GET_ACCT_REDEMPTIONS = "select redemption_date, item_description from account_redemptions where account_number = 'abc1234' order by redemption_date desc";
 
 	// get targeted offer info in sequence order
-	public static final String GET_ACCT_TARGET_OFFER = "select item_description, item_code, point_value from account_targeted_offers where account_number = 'abc1234' order by item_sequence";
+	public static final String GET_FEAUTRED_ITEMS = "select item_description, item_code, point_value from account_targeted_offers where account_number = 'abc1234' order by item_sequence";
 
 	public static Connection getConnection() throws Exception {
 		//Every thing is harcoded for now
@@ -36,10 +40,21 @@ public class DBUtil {
 
 	public static void main(String args[]) {
 		AccountInfo accountInfo = null;
+		
+		List<RedemptionItem> redemptionItems=null;
+		
+		 List<FeaturedItem> featuredItems=null;
 
 		try {
 
 			accountInfo = getAccountInfo("abc1234");
+			
+			redemptionItems=getRedemptionHistory("abc1234");
+			
+			featuredItems=getFeaturedItems("abc1234");
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,6 +63,11 @@ public class DBUtil {
 		System.out.println("AccountNumber:" + accountInfo.getAccountNumber());
 		System.out.println("AccountPIN:" + accountInfo.getAccountPIN());
 		System.out.println("AccountBalance:" + accountInfo.getAccountBalance());
+		
+		System.out.println("Redemption Historys Count:" + redemptionItems.size());
+		
+		System.out.println("Featured Items Count:" + featuredItems.size());
+		
 	}
 
 // Get Account Info
@@ -63,7 +83,7 @@ public class DBUtil {
 			conn = getConnection();
 
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(GET_ACCT);
+			rs = stmt.executeQuery(GET_ACCT_INFO);
 
 			if (rs.next()) {
 				accountInfo.setAccountBalance(rs.getString(1));
@@ -77,14 +97,94 @@ public class DBUtil {
 		} catch (Exception e) {
 			throw e;
 		} finally {
+			closeConnectionObjects(conn,stmt,rs);
+		}
+
+		return accountInfo;
+	}
+	
+	
+	// Get Redemption History
+		public static List<RedemptionItem> getRedemptionHistory(String accountNumber) throws Exception {
+
+			List<RedemptionItem> redemptions= new ArrayList<RedemptionItem>();
+			
+			Connection conn = null;
+			Statement stmt = null;
+			ResultSet rs = null;
+
 			try {
 
-				// Step 5 Close connection
-				if (stmt != null) {
-					stmt.close();
+				conn = getConnection();
+
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(GET_ACCT_REDEMPTIONS);
+
+				if (rs.next()) {
+					
+					RedemptionItem item= new RedemptionItem();
+					
+					item.setRedemptionDate(rs.getString(1));
+					item.setItemDescription(rs.getString(2));
+					redemptions.add(item);
+				
 				}
+
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				closeConnectionObjects(conn,stmt,rs);
+			}
+
+			return redemptions;
+		}
+
+
+		// Get Featured Items
+				public static List<FeaturedItem> getFeaturedItems(String accountNumber) throws Exception {
+
+					List<FeaturedItem> featuredItems= new ArrayList<FeaturedItem>();
+					
+					Connection conn = null;
+					Statement stmt = null;
+					ResultSet rs = null;
+
+					try {
+
+						conn = getConnection();
+
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery(GET_FEAUTRED_ITEMS);
+
+						if (rs.next()) {
+							
+							FeaturedItem item= new FeaturedItem();
+							
+							item.setItemDescription(rs.getString(1));
+							item.setItemPointValue(rs.getString(2));
+							featuredItems.add(item);
+						
+						}
+
+					} catch (Exception e) {
+						throw e;
+					} finally {
+						closeConnectionObjects(conn,stmt,rs);
+					}
+
+					return featuredItems;
+				}
+				
+				
+		public static void closeConnectionObjects(Connection conn,Statement stmt,ResultSet rs) {
+			
+			try {
+
 				if (rs != null) {
 					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
 				}
 				if (conn != null) {
 					conn.close();
@@ -93,8 +193,5 @@ public class DBUtil {
 				e.printStackTrace();
 			}
 		}
-
-		return accountInfo;
-	}
 
 }
