@@ -2,8 +2,10 @@ package com.cxl.rewards.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
@@ -28,10 +30,15 @@ public class PinIntentHandler implements RequestHandler {
        		+ "please tell Alexa what you would like to do next... you can say things like what is my point balance or list my redemptions..."
        		+ "say end to quit";
        
-       //var cityName = this.event.request.intent.slots.City.value;
-       /*Map attributes = input.getAttributesManager().getRequestAttributes();
-       String pin = (String)attributes.get("pin");
-       speechText = speechText + "...your pin is... " + pin;*/
+           
+       /*StringBuilder sb = new StringBuilder();
+       Map attributes = input.getAttributesManager().getRequestAttributes();
+       Set keys = attributes.entrySet();
+       for(Iterator i = keys.iterator(); i.hasNext();) {
+    	   String key = (String)i.next();
+    	   sb.append(attributes.get(key) + " ...");
+       }*/
+  
        
        return input.getResponseBuilder()
                 .withSpeech(speechText)

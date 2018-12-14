@@ -34,11 +34,12 @@ public class FeaturedItemsIntentHandler implements RequestHandler
     	sb.append(speechText);
        
        try {
+    	   int count = 1;
     	   List<FeaturedItem> featuredItem = DBUtil.getFeaturedItems("");
     	   for(FeaturedItem item: featuredItem) {
-    		   sb.append(item.getItemDescription() + " ...");
+    		   sb.append("item " + count++ + " ..." + item.getItemDescription() + " ...");
     	   }
-    	   sb.append("... would you like to hear the feature items next... just say list featured items");
+    	   sb.append("... would you like to redeem for an item... just say which item number");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

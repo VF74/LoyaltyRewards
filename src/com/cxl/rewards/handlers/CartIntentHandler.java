@@ -7,8 +7,6 @@ import java.util.Optional;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
-import com.cxl.rewards.util.LoyaltyRewardsUtil;
-import com.cxl.rewards.util.SpeechConstants;
 
 /**
  * 
@@ -26,10 +24,9 @@ public class CartIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input) 
     {
-       String speechText = "Our top offers are...";
+       String speechText = "thank your for your redemption... A confirmation email will be sent to you shortly... "
+       		+ "Your new point balance is 25000 points";
        
-       //String[] values = {"100", "25" };
-       //speechText = LoyaltyRewardsUtil.buildMessage(speechText, values);
        
        return input.getResponseBuilder()
                 .withSpeech(speechText)
