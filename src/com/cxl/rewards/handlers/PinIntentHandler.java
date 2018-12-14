@@ -2,10 +2,7 @@ package com.cxl.rewards.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
