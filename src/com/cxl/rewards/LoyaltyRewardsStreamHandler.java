@@ -4,6 +4,7 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 import com.cxl.rewards.handlers.CancelandStopIntentHandler;
+import com.cxl.rewards.handlers.CartIntentHandler;
 import com.cxl.rewards.handlers.FallbackIntentHandler;
 import com.cxl.rewards.handlers.HelpIntentHandler;
 import com.cxl.rewards.handlers.LaunchRequestHandler;
@@ -26,9 +27,10 @@ public class LoyaltyRewardsStreamHandler extends SkillStreamHandler
     {
         return Skills.standard()
                 .addRequestHandlers(
-                        new PointBalanceIntentHandler(),
-                        new RedemptionHistoryIntentHandler(),
                         new PinIntentHandler(),
+                		new PointBalanceIntentHandler(),
+                        new RedemptionHistoryIntentHandler(),
+                        new CartIntentHandler(),
                         new CancelandStopIntentHandler(),
                         new HelpIntentHandler(),
                         new LaunchRequestHandler(),

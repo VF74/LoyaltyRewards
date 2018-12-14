@@ -69,7 +69,9 @@ public class DBUtil {
 				accountInfo.setAccountBalance(rs.getString(1));
 				accountInfo.setAccountPIN(rs.getString(2));
 				accountInfo.setAccountNumber(accountNumber);
-				System.out.println(rs.getString(1));
+				accountInfo.setPointsToExpire(rs.getString(3));
+				accountInfo.setExpirationDate(rs.getString(4));
+				//System.out.println(rs.getString(1));
 			}
 
 		} catch (Exception e) {

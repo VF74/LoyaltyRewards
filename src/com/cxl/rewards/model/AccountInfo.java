@@ -15,6 +15,8 @@ public class AccountInfo
     public String accountNumber ="";
     public String accountPIN ="";
     public String accountBalance ="";
+    public String pointsToExpire="";
+    public String expirationDate="";
     
     public List<RedemptionItem> redemptionItemList;
     
@@ -54,6 +56,22 @@ public class AccountInfo
 	}
 	public void setAccountBalance(String accountBalance) {
 		this.accountBalance = accountBalance;
+	}
+
+	public String getPointsToExpire() {
+		return pointsToExpire;
+	}
+
+	public void setPointsToExpire(String pointsToExpire) {
+		this.pointsToExpire = pointsToExpire;
+	}
+
+	public String getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(String expirationDate) {
+		this.expirationDate = expirationDate;
 	}
     
     
