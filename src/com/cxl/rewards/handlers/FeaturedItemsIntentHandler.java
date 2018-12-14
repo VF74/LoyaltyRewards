@@ -37,7 +37,7 @@ public class FeaturedItemsIntentHandler implements RequestHandler
     	   int count = 1;
     	   List<FeaturedItem> featuredItem = DBUtil.getFeaturedItems("");
     	   for(FeaturedItem item: featuredItem) {
-    		   sb.append("item " + count++ + " ..." + item.getItemDescription() + "... point cost " + item.getItemPointValue() );
+    		   sb.append(" item " + count++ + " ..." + item.getItemDescription() + "... point cost " + item.getItemPointValue() );
     	   }
     	   sb.append("... would you like to redeem for an item... just say which item number");
 		} catch (Exception e) {
