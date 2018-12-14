@@ -1,4 +1,4 @@
-# Alexa Loyalty Rewards skil
+# Alexa Loyalty Rewards skill
 
 
 ## Setup
