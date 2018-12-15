@@ -24,8 +24,7 @@ public class PinIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) 
     {
        String speechText = "Thank your Rob Moon...your now ready to use the new and fantastic loyalty rewards Alexa skill by connections..."
-       		+ "please tell Alexa what you would like to do next... you can say things like what is my point balance or list my redemptions..."
-       		+ "say end to quit";
+       		+ "please tell Alexa what you would like to do next... you can say things like what is my point balance or list my redemptions... say exit to quit";
        
            
              

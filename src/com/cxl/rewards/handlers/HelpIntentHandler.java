@@ -27,7 +27,7 @@ public class HelpIntentHandler implements RequestHandler
         String speechText = "The following commands are available in the latest version of this skill...you can say things like, "
         		+ "what is my point balance... or just simply balance.... you can ask alexa to get the status of your latest "
         		+ "redemption by saying redemption status..."
-        		+ "you can also redeem for a gift card by saying redeem...when you are finished just say end to exit. "
+        		+ "you can also redeem for a gift card by saying redeem...when you are finished just say exit. "
         		+ "Thank you for using this latest additions to the connetions loyalty product lineup";
         
         return input.getResponseBuilder()
