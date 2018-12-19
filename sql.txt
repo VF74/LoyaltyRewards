@@ -1,0 +1,13 @@
+
+select * from accounts
+
+select * from account_redemptions
+
+select * from account_targeted_offers order by account_number
+
+delete from account_redemptions
+where id = 15
+
+update account_targeted_offers
+set item_description = '$25 Walmart Gift Card'
+where id = 3
