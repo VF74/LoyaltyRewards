@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.amazonaws.services.dynamodbv2.document.Item;
 import com.cxl.rewards.model.AccountInfo;
 import com.cxl.rewards.model.FeaturedItem;
 import com.cxl.rewards.model.RedemptionItem;
@@ -29,19 +28,18 @@ public class DBUtil
 	// get targeted offer info in sequence order
 	public static final String GET_FEAUTRED_ITEMS_BY_CODE = "select item_description, item_code, point_value from account_targeted_offers where account_number = 'abc1234' and item_code='AMAZONEC100'";
 
-	public static Connection getConnection() throws Exception {
+	public static Connection getConnection() throws Exception 
+	{
 		//Every thing is harcoded for now
 		Connection conn = null;
 		Class.forName("org.postgresql.Driver");
-		String url = "jdbc:postgresql://mycompany.cvxcdyqwxebd.us-east-1.rds.amazonaws.com:5432/mycompanydb";
+		String url = "jdbc:postgresql://myrewards.cvxcdyqwxebd.us-east-1.rds.amazonaws.com:5432/mycompanydb";
 		Properties props = new Properties();
 		props.setProperty("user", "loyaltyone");
-		props.setProperty("password", "connexions");
+		props.setProperty("password", "connexions");		
 		// props.setProperty("ssl","true");
 		conn = DriverManager.getConnection(url, props);
-
 		return conn;
-
 	}
 
 	public static void main(String args[]) {
